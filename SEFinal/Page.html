@@ -3,51 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Landing Page</title>
+    <title>Stock Data Landing Page</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-    <!-- Top navigation bar -->
+
+    <!-- Top Navigation Bar -->
     <div class="top-nav">
-        <button class="nav-btn">Trading Practice</button>
-        <button class="nav-btn" onclick="openHistoricDataWindow()">Temp Load Data</button>
-        <button class="nav-btn">Option 3</button>
+        <button class="nav-btn" onclick="openModal()">Load Stock Data</button>
+        <button class="nav-btn" onclick="alert('Option 3 Clicked')">Option 3</button>
     </div>
 
-    <!-- Main content -->
-    <div class="main-content">
-        <!-- Stock Buttons -->
-        <div class="stock-grid">
-            <button class="stock-btn">Name of Stock</button>
-            <button class="stock-btn">Name of Stock</button>
-            <button class="stock-btn">Name of Stock</button>
-            <button class="stock-btn">Name of Stock</button>
-            <button class="stock-btn">Name of Stock</button>
-            <button class="stock-btn">Name of Stock</button>
-        </div>
+    <!-- Main Content -->
+    <h1 style="text-align: center;">Welcome to the Stock Data Page</h1>
 
-        <!-- Stock Data Input Modal -->
-        <div id="historicDataWindow" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeHistoricDataWindow()">&times;</span>
-                <label for="stockSymbol">Enter stock symbol:</label>
-                <input type="text" id="stockSymbol" placeholder="e.g., AAPL" />
+    <!-- Button Grid Container -->
+    <div class="button-container">
+        <!-- Each button contains an image and text -->
+        <button class="stock-button">
+            <img src="AAPLFake .png" alt="Stock 1" />
+            AAPL Inc
+        </button>
+        <button class="stock-button">
+            <img src="pfizer.png" alt="Stock 2" />
+            Pfizer Inc
+        </button>
+        <button class="stock-button">
+            <img src="nvidiaFake.png" alt="Stock 3" />
+            NVIDIA 
+        </button>
+        <button class="stock-button">
+            <img src="IBMJEEZ.png" alt="Stock 4" />
+            IBM 
+        </button>
+        <button class="stock-button">
+            <img src="AMAZONFAKE.png" alt="Stock 5" />
+            AMAZON
+        </button>
+        <button class="stock-button">
+            <img src="DexFak.png" alt="Stock 6" />
+            Dexcom 
+        </button>
+    </div>
 
-                <label for="timeFrame">Enter time frame (e.g., 1mo, 3mo, 1y):</label>
-                <input type="text" id="timeFrame" placeholder="e.g., 1mo" />
+    <!-- Modal for the stock data input -->
+    <div id="loadDataModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
 
-                <button onclick="grabData()">Grab</button>
+            <h2>Load Stock Data</h2>
 
-                <p id="result"></p>
-            </div>
-        </div>
+            <!-- Form to input stock symbol and time frame -->
+            <label for="modalStockSymbol">Enter stock symbol:</label>
+            <input type="text" id="modalStockSymbol" placeholder="e.g., AAPL" />
 
-        <!-- Graph Section -->
-        <div id="graphSection">
-            <canvas id="stockGraph"></canvas>
+            <br><br>
+
+            <label for="modalTimeFrame">Enter time frame (e.g., 1mo, 3mo, 1y):</label>
+            <input type="text" id="modalTimeFrame" placeholder="e.g., 1mo" />
+
+            <br><br>
+
+            <button onclick="modalGrabData()">Grab Data</button>
+
+            <p id="modalResult"></p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- JavaScript to handle modal and data grabbing -->
+    <script>
+        // Function to open the modal
+        function openModal() {
+            document.getElementById("loadDataModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("loadDataModal").style.display = "none";
+        }
+
+        // Function to handle the create_csv logic within the modal
+        function modalGrabData() {
+            const stockSymbol = document.getElementById("modalStockSymbol").value.trim();
+            const timeFrame = document.getElementById("modalTimeFrame").value.trim();
+            const resultElement = document.getElementById("modalResult");
+
+            if (stockSymbol === "" || timeFrame === "") {
+                resultElement.innerText = "Please enter both the stock symbol and time frame.";
+                return;
+            }
+
+            // Simulate data fetching (replace this with real logic)
+            resultElement.innerText = `Fetching data for ${stockSymbol} with time frame ${timeFrame}...`;
+            
+            // Simulate delay for grabbing data
+            setTimeout(() => {
+                resultElement.innerText = `Data for ${stockSymbol} over ${timeFrame} saved to CSV!`;
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
