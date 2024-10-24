@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top navigation bar -->
+    <div class="top-nav">
+        <button class="nav-btn">Trading Practice</button>
+        <button class="nav-btn" onclick="openHistoricDataWindow()">Temp Load Data</button>
+        <button class="nav-btn">Option 3</button>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Stock Buttons -->
+        <div class="stock-grid">
+            <button class="stock-btn">Name of Stock</button>
+            <button class="stock-btn">Name of Stock</button>
+            <button class="stock-btn">Name of Stock</button>
+            <button class="stock-btn">Name of Stock</button>
+            <button class="stock-btn">Name of Stock</button>
+            <button class="stock-btn">Name of Stock</button>
+        </div>
+
+        <!-- Stock Data Input Modal -->
+        <div id="historicDataWindow" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeHistoricDataWindow()">&times;</span>
+                <label for="stockSymbol">Enter stock symbol:</label>
+                <input type="text" id="stockSymbol" placeholder="e.g., AAPL" />
+
+                <label for="timeFrame">Enter time frame (e.g., 1mo, 3mo, 1y):</label>
+                <input type="text" id="timeFrame" placeholder="e.g., 1mo" />
+
+                <button onclick="grabData()">Grab</button>
+
+                <p id="result"></p>
+            </div>
+        </div>
+
+        <!-- Graph Section -->
+        <div id="graphSection">
+            <canvas id="stockGraph"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
